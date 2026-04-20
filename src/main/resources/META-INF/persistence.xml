@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence" version="2.2">
+
+    <persistence-unit name="CinemaPU" transaction-type="JTA">
+
+        <!-- The JNDI name of the datasource we created in WildFly -->
+        <jta-data-source>java:/CinemaDS</jta-data-source>
+
+        <!-- All JPA entity classes must be listed here -->
+        <class>com.dauzva.entities.Cinema</class>
+        <class>com.dauzva.entities.Hall</class>
+        <class>com.dauzva.entities.Genre</class>
+        <class>com.dauzva.entities.Movie</class>
+        <class>com.dauzva.entities.Screening</class>
+
+        <properties>
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="jakarta.persistence.schema-generation.database.action" value="none"/>
+        </properties>
+
+    </persistence-unit>
+
+</persistence>

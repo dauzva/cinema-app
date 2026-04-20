@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="jakarta.faces.core"
+      xmlns:ui="jakarta.faces.facelets">
+<h:head>
+    <title>Cinema Screenings</title>
+</h:head>
+<h:body>
+
+    <h2>Screenings (loaded via JPA)</h2>
+    <p:dataTable value="#{screeningController.screenings}" var="s" stripedRows="true">
+        <p:column headerText="Movie">#{s.movie.title}</p:column>
+        <p:column headerText="Duration">#{s.movie.durationMinutes} min</p:column>
+        <p:column headerText="Hall">#{s.hall.name}</p:column>
+        <p:column headerText="Cinema">#{s.hall.cinema.name}</p:column>
+        <p:column headerText="Start Time">#{s.startTime}</p:column>
+        <p:column headerText="Price (€)">#{s.price}</p:column>
+    </p:dataTable>
+
+    <br/>
+
+    <h2>Screenings (loaded via MyBatis)</h2>
+    <p:dataTable value="#{screeningController.screeningsMB}" var="s" stripedRows="true">
+        <p:column headerText="Movie">#{s.movieTitle}</p:column>
+        <p:column headerText="Duration">#{s.movieDuration} min</p:column>
+        <p:column headerText="Hall">#{s.hallName}</p:column>
+        <p:column headerText="Cinema">#{s.cinemaName}</p:column>
+        <p:column headerText="Start Time">#{s.startTime}</p:column>
+        <p:column headerText="Price (€)">#{s.price}</p:column>
+    </p:dataTable>
+
+    <br/>
+    <h:link value="Add new screening" outcome="/pages/addScreening"/>
+
+</h:body>
+</html>

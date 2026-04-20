@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="jakarta.faces.core"
+      xmlns:ui="jakarta.faces.facelets">
+<h:head>
+    <title>Add Screening</title>
+</h:head>
+<h:body>
+
+    <h2>Add New Screening</h2>
+
+    <h:form id="addForm">
+
+        <!-- This shows ALL messages (global errors from the controller) -->
+        <p:messages id="messages" showDetail="true" closable="true"/>
+
+        <p:outputLabel value="Movie:" for="movie"/>
+        <p:selectOneMenu id="movie" value="#{screeningController.selectedMovieId}">
+            <f:selectItem itemLabel="-- Select a movie --" itemValue="#{null}"/>
+            <f:selectItems value="#{screeningController.movieList}"
+                           var="m"
+                           itemLabel="#{m.title} (#{m.releaseYear})"
+                           itemValue="#{m.id}"/>
+        </p:selectOneMenu>
+        <!-- Shows error specifically for the movie field -->
+        <p:message for="movie"/>
+
+        <br/><br/>
+
+        <p:outputLabel value="Hall:" for="hall"/>
+        <p:selectOneMenu id="hall" value="#{screeningController.selectedHallId}">
+            <f:selectItem itemLabel="-- Select a hall --" itemValue="#{null}"/>
+            <f:selectItems value="#{screeningController.hallList}"
+                           var="h"
+                           itemLabel="#{h.cinema.name} — #{h.name} (#{h.capacity} seats)"
+                           itemValue="#{h.id}"/>
+        </p:selectOneMenu>
+        <p:message for="hall"/>
+
+        <br/><br/>
+
+        <p:outputLabel value="Start Time:" for="startTime"/>
+        <p:datePicker id="startTime"
+                      value="#{screeningController.newScreening.startTime}"
+                      showTime="true"
+                      pattern="yyyy-MM-dd HH:mm"/>
+
+        <br/><br/>
+
+        <p:outputLabel value="Ticket Price (€):" for="price"/>
+        <p:inputNumber id="price"
+                       value="#{screeningController.newScreening.price}"
+                       minValue="0" maxValue="999" decimalPlaces="2"/>
+
+        <br/><br/>
+
+        <p:commandButton value="Save Screening"
+                         action="#{screeningController.saveScreening()}"
+                         ajax="false"
+                         icon="pi pi-check"/>
+
+    </h:form>
+
+</h:body>
+</html>
