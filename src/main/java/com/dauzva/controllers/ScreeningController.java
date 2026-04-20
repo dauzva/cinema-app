@@ -1,5 +1,8 @@
 package com.dauzva.controllers;
 
+import com.dauzva.beans.ApplicationScopedCounter;
+import com.dauzva.beans.RequestScopedCounter;
+import com.dauzva.beans.SessionScopedCounter;
 import com.dauzva.entities.Hall;
 import com.dauzva.entities.Movie;
 import com.dauzva.entities.Screening;
@@ -17,8 +20,6 @@ import jakarta.inject.Named;
 import java.io.Serializable;
 import java.util.List;
 
-// @Named  → makes this bean available in JSF pages as #{screeningController}
-// @ViewScoped → this bean lives as long as the user stays on the same page
 @Named
 @ViewScoped
 @Getter @Setter
@@ -26,6 +27,12 @@ public class ScreeningController implements Serializable {
 
     @Inject
     private ScreeningService screeningService;
+    @Inject
+    private ApplicationScopedCounter applicationScopedCounter;
+    @Inject
+    private RequestScopedCounter requestScopedCounter;
+    @Inject
+    private SessionScopedCounter sessionScopedCounter;
 
     private List<Screening> screenings;
     private List<ScreeningMB> screeningsMB;

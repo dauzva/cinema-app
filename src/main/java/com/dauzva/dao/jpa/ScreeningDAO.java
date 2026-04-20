@@ -27,8 +27,6 @@ public class ScreeningDAO {
         return em.find(Screening.class, id);
     }
 
-    // @Transactional = the transaction is handled automatically by the container
-    // You do NOT write begin() / commit() — the container does it for you
     @Transactional
     public void save(Screening screening) {
         em.persist(screening);  // INSERT into DB

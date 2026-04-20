@@ -9,6 +9,23 @@
 </h:head>
 <h:body>
 
+    <h:form id="scopedemo">
+        <p:panel header="@RequestScoped">
+            <p:commandButton value="Increment" action="#{screeningController.requestScopedCounter.incrementCounter}"/>
+            Counter: #{screeningController.requestScopedCounter.counter}
+        </p:panel>
+        <br/>
+        <p:panel header="@SessionScoped">
+            <p:commandButton value="Increment" action="#{screeningController.sessionScopedCounter.incrementCounter}"/>
+            Counter: #{screeningController.sessionScopedCounter.counter}
+        </p:panel>
+        <br/>
+        <p:panel header="@ApplicationScoped">
+            <p:commandButton value="Increment" action="#{screeningController.applicationScopedCounter.incrementCounter}"/>
+            Counter: #{screeningController.applicationScopedCounter.counter}
+        </p:panel>
+    </h:form>
+
     <h2>Screenings (loaded via JPA)</h2>
     <p:dataTable value="#{screeningController.screenings}" var="s" stripedRows="true">
         <p:column headerText="Movie">#{s.movie.title}</p:column>
